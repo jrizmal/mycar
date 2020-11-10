@@ -1,32 +1,46 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="main-container">
+    <div class="flex-content">
+      <router-view />
     </div>
-    <router-view/>
+    <div class="flex-navigation">
+      <md-bottom-bar class="md-accent" md-sync-route>
+        <md-bottom-bar-item
+          to="/add"
+          exact
+          md-label="Add"
+          :md-icon="require('@/assets/icons/plus.svg')"
+        ></md-bottom-bar-item>
+        <md-bottom-bar-item
+          to="/dashboard"
+          md-label="Dashboard"
+          :md-icon="require('@/assets/icons/info.svg')"
+        ></md-bottom-bar-item>
+        <md-bottom-bar-item
+          to="/other"
+          md-label="Drugo"
+          :md-icon="require('@/assets/icons/settings.svg')"
+        ></md-bottom-bar-item>
+      </md-bottom-bar>
+    </div>
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.flex-content {
+  overflow: auto;
+  flex: 1 1 auto;
+  align-self: stretch;
+}
+.flex-navigation {
+  display: inline-flex;
+  align-items: flex-end;
+  border: 1px solid rgba(#000, 0.26);
+  background: rgba(#000, 0.06);
 }
 </style>
