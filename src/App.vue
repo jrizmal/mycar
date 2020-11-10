@@ -31,6 +31,8 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: black;
+  color: white;
 }
 .flex-content {
   overflow: auto;
