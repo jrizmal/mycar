@@ -1,0 +1,30 @@
+.main-padding {
+    padding: 20px;
+  }
+  .heading {
+    margin-top: 0 !important;
+  }
+  .click-item {
+    border-radius: 20px;
+    background-color: #4f4f4f;
+    padding: 15px !important;
+    -webkit-box-shadow: 10px 10px 11px -10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 11px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 11px -10px rgba(0, 0, 0, 0.75);
+    text-align: center;
+    cursor: pointer;
+  }
+  .item-padding:nth-of-type(odd) {
+    padding-right: 7px;
+    padding-bottom: 14px;
+  }
+  .item-padding:nth-of-type(even) {
+    padding-left: 7px;
+    padding-bottom: 14px;
+  }
+  .item-icon{
+    color: white !important;
+  }
+  .dashboard-item-padding{
+    padding-bottom: 14px;
+  }

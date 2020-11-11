@@ -4,22 +4,22 @@
       <router-view />
     </div>
     <div class="flex-navigation">
-      <md-bottom-bar class="md-accent" md-sync-route>
+      <md-bottom-bar md-type="shift" class="md-primary" md-sync-route>
         <md-bottom-bar-item
           to="/add"
           exact
           md-label="Add"
-          :md-icon="require('@/assets/icons/plus.svg')"
+          md-icon="add"
         ></md-bottom-bar-item>
         <md-bottom-bar-item
           to="/dashboard"
           md-label="Dashboard"
-          :md-icon="require('@/assets/icons/info.svg')"
+          md-icon="info"
         ></md-bottom-bar-item>
         <md-bottom-bar-item
           to="/other"
           md-label="Drugo"
-          :md-icon="require('@/assets/icons/settings.svg')"
+          md-icon="settings"
         ></md-bottom-bar-item>
       </md-bottom-bar>
     </div>
@@ -27,11 +27,12 @@
 </template>
 
 <style lang="scss">
+
 .main-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: black;
+  background-color: #828282;
   color: white;
 }
 .flex-content {
@@ -42,7 +43,8 @@
 .flex-navigation {
   display: inline-flex;
   align-items: flex-end;
-  border: 1px solid rgba(#000, 0.26);
-  background: rgba(#000, 0.06);
+  /* border: 1px solid rgba(#000, 0.26);
+  background: rgba(#000, 0.06); */
 }
 </style>
+

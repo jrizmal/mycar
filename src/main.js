@@ -8,7 +8,8 @@ import store from './store'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
-
+import './assets/style/custom-theme.scss'
+import './assets/style/style.css'
 Vue.use(VueMaterial)
 
 Vue.config.productionTip = false
