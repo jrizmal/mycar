@@ -4,19 +4,22 @@
       <router-view />
     </div>
     <div class="flex-navigation">
-      <md-bottom-bar md-type="shift" class="md-primary" md-sync-route>
+      <md-bottom-bar md-type="shift" class="md-primary" :md-active-item="activeItem">
         <md-bottom-bar-item
+        id="menu-add"
           to="/add"
           exact
           md-label="Add"
           md-icon="add"
         ></md-bottom-bar-item>
         <md-bottom-bar-item
+        id="menu-dashboard"
           to="/dashboard"
           md-label="Dashboard"
           md-icon="info"
         ></md-bottom-bar-item>
         <md-bottom-bar-item
+        id="menu-other"
           to="/other"
           md-label="Drugo"
           md-icon="settings"
@@ -25,6 +28,26 @@
     </div>
   </div>
 </template>
+
+<script>
+export default{
+  computed: {
+    activeItem(){
+      const path = this.$route.path
+      if(path.startsWith('/add')){
+        return 'menu-add'
+      }
+      if(path.startsWith('/other')){
+        return 'menu-other'
+      }
+      if(path.startsWith('/dashboard')){
+        return 'menu-dashboard'
+      }
+      return null
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 

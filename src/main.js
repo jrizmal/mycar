@@ -12,6 +12,10 @@ import './assets/style/custom-theme.scss'
 import './assets/style/style.css'
 Vue.use(VueMaterial)
 
+/* My components */
+import PageContainer from './components/PageContainer'
+Vue.component('page-container',PageContainer)
+
 Vue.config.productionTip = false
 
 new Vue({

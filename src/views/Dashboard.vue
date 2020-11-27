@@ -1,11 +1,6 @@
 <template>
-  <div class="main-padding">
-    <div class="md-layout">
-      <div class="md-layout-item md-size-100 heading">
-        <h1 class="heading">Informacije</h1>
-      </div>
-      <div class="md-layout md-size-100">
-        <div
+<page-container title="Informacije">
+<div
           v-for="item in dashboard_items"
           :key="item.title"
           class="md-layout-item md-size-100 dashboard-item-padding"
@@ -16,9 +11,8 @@
             {{ item.title }}
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+</page-container>
+  
 </template>
 
 <script>
