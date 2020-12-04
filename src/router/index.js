@@ -7,6 +7,7 @@ import AddTires from '../views/Add_items/AddTires'
 import AddFuel from '../views/Add_items/AddFuel'
 import AddService from '../views/Add_items/AddService'
 import AddFirstAid from '../views/Add_items/AddFirstAid'
+import Login from '../views/Login'
 
 Vue.use(VueRouter)
 
@@ -47,6 +48,11 @@ const routes = [
     path: '/other',
     name: 'Other',
     component: Other
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
 
 ]

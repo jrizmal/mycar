@@ -1,25 +1,45 @@
 <template>
   <div class="main-container">
-    <div class="flex-content">
+    <div v-if="auth.isLoggedIn" class="flex-content">
       <router-view />
     </div>
-    <div class="flex-navigation">
-      <md-bottom-bar md-type="shift" class="md-primary" :md-active-item="activeItem">
+    <div v-else class="flex-content">
+      <page-container title="Prijava">
+        <div class="md-layout-item md-size-100">
+          <p>Za uporabo aplikacije se morate najprej prijaviti.</p>
+        </div>
+
+        <div class="md-layout-item md-size-100">
+          <md-button @click="googleLogin" class="md-raised md-primary"
+            >Google prijava</md-button
+          >
+        </div>
+        <div class="md-layout-item md-size-100">
+          <p>myCar 2020</p>
+        </div>
+      </page-container>
+    </div>
+    <div v-if="auth.isLoggedIn" class="flex-navigation">
+      <md-bottom-bar
+        md-type="shift"
+        class="md-primary"
+        :md-active-item="activeItem"
+      >
         <md-bottom-bar-item
-        id="menu-add"
+          id="menu-add"
           to="/add"
           exact
           md-label="Add"
           md-icon="add"
         ></md-bottom-bar-item>
         <md-bottom-bar-item
-        id="menu-dashboard"
+          id="menu-dashboard"
           to="/dashboard"
           md-label="Dashboard"
           md-icon="info"
         ></md-bottom-bar-item>
         <md-bottom-bar-item
-        id="menu-other"
+          id="menu-other"
           to="/other"
           md-label="Drugo"
           md-icon="settings"
@@ -30,27 +50,52 @@
 </template>
 
 <script>
-export default{
+const firebase = require("firebase").default;
+export default {
   computed: {
-    activeItem(){
-      const path = this.$route.path
-      if(path.startsWith('/add')){
-        return 'menu-add'
+    activeItem() {
+      const path = this.$route.path;
+      if (path.startsWith("/add")) {
+        return "menu-add";
       }
-      if(path.startsWith('/other')){
-        return 'menu-other'
+      if (path.startsWith("/other")) {
+        return "menu-other";
       }
-      if(path.startsWith('/dashboard')){
-        return 'menu-dashboard'
+      if (path.startsWith("/dashboard")) {
+        return "menu-dashboard";
       }
-      return null
-    }
-  }
-}
+      return null;
+    },
+    auth() {
+      return this.$store.state;
+    },
+  },
+  methods: {
+    async googleLogin() {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((res) => {
+          if (res.credential) {
+            this.$store.dispatch("logIn", {
+              user: res.user,
+              token: res.credential.accessToken,
+            });
+            this.$router.replace("/");
+            this.$toasted.success(`Pozdravljeni ${res.user.displayName}!`);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+  },
+  mounted() {},
+};
 </script>
 
 <style lang="scss">
-
 .main-container {
   display: flex;
   flex-direction: column;
