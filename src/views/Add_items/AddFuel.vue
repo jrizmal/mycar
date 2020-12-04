@@ -39,7 +39,8 @@ export default {
   methods: {
     saveData(){
       axios.post('fuel',this.data).then(res=>{
-        console.log(res.data);
+        this.$router.replace('/')
+        this.$toasted.success("Zapis dodan")
       })
     }
   }

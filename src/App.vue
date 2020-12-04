@@ -82,7 +82,7 @@ export default {
               user: res.user,
               token: res.credential.accessToken,
             });
-            this.$router.replace("/");
+            // this.$router.replace("/");
             this.$toasted.success(`Pozdravljeni ${res.user.displayName}!`);
           }
         })
