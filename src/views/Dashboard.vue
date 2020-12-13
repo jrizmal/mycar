@@ -1,53 +1,42 @@
 <template>
   <page-container title="Informacije">
     <h3>Gorivo</h3>
-    <div
-      v-for="f in fuelings"
-      :key="f._id"
-      class="md-layout-item md-size-100 dashboard-item-padding"
-    >
-      <div class="click-item">
-        <span>Kilometri na števcu: {{ f.kilometers }}</span> <br>
-        <span>Količina: {{ f.amount }}</span> <br>
-        <span>Datum: {{ getNiceDate(f.date) }}</span> <br>
-        <span>Cena: {{ f.price }}</span> <br>
-        
-      </div>
-    </div>
-    <p>Skupaj: {{fuelTotal}}€</p>
+    <FuelDisplay :fuelings="fuelings"></FuelDisplay>
+    <h3>Gume</h3>
+    <TireDisplay :tires="tires"></TireDisplay>
+    <h3>Servisi</h3>
+    <ServiceDisplay :services="services"></ServiceDisplay>
   </page-container>
 </template>
 
 <script>
-const axios = require("axios").default;
+import FuelDisplay from "../components/dashboard/FuelDisplay.vue";
+import TireDisplay from "../components/dashboard/TireDisplay.vue";
+import ServiceDisplay from "../components/dashboard/ServiceDisplay.vue";
+const { getFuelings, getTires, getServices } = require("../services/items");
 export default {
+  components: {
+    FuelDisplay: FuelDisplay,
+    TireDisplay: TireDisplay,
+    ServiceDisplay: ServiceDisplay,
+  },
   data: () => {
     return {
       fuelings: [],
+      tires: [],
+      services: [],
     };
   },
-  computed: {
-    fuelTotal(){
-      let sum=0
-      this.fuelings.forEach(el=>{
-        sum+=el.price
-      })
-      return sum.toFixed(2)
-    }
-  },
-  methods: {
-    navigateTo(uri) {
-      this.$router.push(uri);
-    },
-    getNiceDate(dateString){
-      const date = new Date(dateString)
-      return `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`
-    }
-  },
-  mounted() {
-    axios.get("fuel").then((res) => {
+  async mounted() {
+    getFuelings().then((res) => {
       this.fuelings = res.data;
     });
+    getTires().then((res) => {
+      this.tires = res.data;
+    });
+    getServices().then(res=>{
+      this.services = res.data
+    })
   },
 };
 </script>

@@ -1,14 +1,16 @@
 <template>
-  <div class="main-padding">
-    <div class="md-layout">
-      <div class="md-layout-item md-size-100 heading">
+  <b-container>
+    <b-row>
+      <b-col id="heading">
         <h1 class="heading">{{ title }}</h1>
-      </div>
-      <div class="md-layout md-size-100">
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
         <slot></slot>
-      </div>
-    </div>
-  </div>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -22,5 +24,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#heading {
+  margin: 10px 0 10px 0;
+}
 </style>

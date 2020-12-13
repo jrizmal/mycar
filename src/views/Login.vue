@@ -1,8 +1,13 @@
 <template>
   <page-container title="Prijava">
-    <md-button @click="googleLogin" class="md-raised md-primary"
-      >Google prijava</md-button
-    >
+    <b-row>
+      <b-col>
+        <b-button @click="googleLogin">
+          Google Prijava
+        </b-button>
+      </b-col>
+    </b-row>
+    
   </page-container>
 </template>
 

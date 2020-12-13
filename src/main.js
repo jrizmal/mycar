@@ -17,6 +17,11 @@ var firebaseConfig = {
 };
 firebase.default.initializeApp(firebaseConfig)
 
+/* Bootstrap */
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+// Vue.use(IconsPlugin)
+
 /* Vue material */
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
@@ -27,15 +32,15 @@ Vue.use(VueMaterial)
 
 /* My components */
 import PageContainer from './components/PageContainer'
-Vue.component('page-container',PageContainer)
+Vue.component('page-container', PageContainer)
 
 /* Toasted */
 import Toasted from 'vue-toasted';
-Vue.use(Toasted,{duration:1500})
+Vue.use(Toasted, { duration: 1500 })
 
 /* Axios */
 const axios = require('axios').default
-axios.defaults.baseURL = (process.env.NODE_ENV === 'development'?'http://localhost:3000':'https://mycar-api.herokuapp.com/')
+axios.defaults.baseURL = (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://mycar-api.herokuapp.com/')
 
 Vue.config.productionTip = false
 

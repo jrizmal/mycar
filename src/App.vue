@@ -3,22 +3,25 @@
     <div v-if="auth.isLoggedIn" class="flex-content">
       <router-view />
     </div>
-    <div v-else class="flex-content">
-      <page-container title="Prijava">
-        <div class="md-layout-item md-size-100">
+    <page-container v-else title="Prijava">
+      <b-row>
+        <b-col>
           <p>Za uporabo aplikacije se morate najprej prijaviti.</p>
-        </div>
-
-        <div class="md-layout-item md-size-100">
-          <md-button @click="googleLogin" class="md-raised md-primary"
-            >Google prijava</md-button
-          >
-        </div>
-        <div class="md-layout-item md-size-100">
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <b-button @click="googleLogin" block variant="success">
+            Google Prijava
+          </b-button>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
           <p>myCar 2020</p>
-        </div>
-      </page-container>
-    </div>
+        </b-col>
+      </b-row>
+    </page-container>
     <div v-if="auth.isLoggedIn" class="flex-navigation">
       <md-bottom-bar
         md-type="shift"
@@ -72,7 +75,10 @@ export default {
   },
   methods: {
     async googleLogin() {
-      var provider = new firebase.auth.GoogleAuthProvider();
+      this.$store.dispatch('logIn').then(res=>{
+        this.$toasted.success(`Pozdravljeni`);
+      })
+      /* var provider = new firebase.auth.GoogleAuthProvider();
       firebase
         .auth()
         .signInWithPopup(provider)
@@ -82,13 +88,12 @@ export default {
               user: res.user,
               token: res.credential.accessToken,
             });
-            // this.$router.replace("/");
             this.$toasted.success(`Pozdravljeni ${res.user.displayName}!`);
           }
         })
         .catch((err) => {
           console.error(err);
-        });
+        }); */
     },
   },
   mounted() {},

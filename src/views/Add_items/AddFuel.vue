@@ -1,31 +1,55 @@
 <template>
   <page-container title="Tankanje">
-    <div class="input-container md-layout-item md-size-100">
-      <md-field>
-        <label>Količina (L)</label>
-        <md-input type="number" v-model="data.amount"></md-input>
-      </md-field>
-    </div>
-
-    <div class="input-container md-layout-item md-size-100">
-      <md-field>
-        <label>Cena (€)</label>
-        <md-input type="number" v-model="data.price"></md-input>
-      </md-field>
-    </div>
-
-    <div class="input-container md-layout-item md-size-100">
-      <md-field>
-        <label>Kilometri na števcu</label>
-        <md-input type="number" v-model="data.kilometers"></md-input>
-      </md-field>
-    </div>
-    <md-button @click="saveData" class="md-raised md-primary">Dodaj</md-button>
+    <b-row>
+      <b-col>
+        <b-form-group label="Količina">
+          <b-input-group append="litrov">
+            <b-form-input
+              v-model="data.amount"
+              trim
+              type="number"
+            ></b-form-input>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-form-group label="Cena">
+          <b-input-group append="€">
+            <b-form-input
+              v-model="data.price"
+              trim
+              type="number"
+            ></b-form-input>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-form-group label="Kilometri na števcu">
+          <b-input-group append="km">
+            <b-form-input
+              v-model="data.kilometers"
+              trim
+              type="number"
+            ></b-form-input>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-button variant="success" block @click="saveData">Dodaj</b-button>
+      </b-col>
+    </b-row>
   </page-container>
 </template>
 
 <script>
-const axios = require('axios').default
+import { addFueling } from "../../services/items";
+const axios = require("axios").default;
 export default {
   data() {
     return {
@@ -37,13 +61,10 @@ export default {
     };
   },
   methods: {
-    saveData(){
-      axios.post('fuel',this.data).then(res=>{
-        this.$router.replace('/')
-        this.$toasted.success("Zapis dodan")
-      })
-    }
-  }
+    saveData() {
+      addFueling(this.data);
+    },
+  },
 };
 </script>
 
