@@ -75,9 +75,9 @@ export default {
   },
   methods: {
     async googleLogin() {
-      this.$store.dispatch('logIn').then(res=>{
+      this.$store.dispatch("logIn").then((res) => {
         this.$toasted.success(`Pozdravljeni`);
-      })
+      });
       /* var provider = new firebase.auth.GoogleAuthProvider();
       firebase
         .auth()
@@ -96,7 +96,12 @@ export default {
         }); */
     },
   },
-  mounted() {},
+  mounted() {
+    const messaging = firebase.messaging();
+    messaging.onMessage((payload)=>{
+      console.log(payload);
+    })
+  },
 };
 </script>
 

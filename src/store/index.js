@@ -10,7 +10,8 @@ export default new Vuex.Store({
   state: {
     isLoggedIn: false,
     idToken: null,
-    user: null
+    user: null,
+    msgToken: null,
   },
   mutations: {
     setLoggedin(state, data) {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
       state.isLoggedIn = false
       state.idToken = null
       state.user = null
+    },
+    setMsgToken(state, token) {
+      state.msgToken = token
     }
 
   },
@@ -50,6 +54,9 @@ export default new Vuex.Store({
     },
     logOut({ commit }) {
       commit('setLoggedOut')
+    },
+    setMsgToken({ commit }, token) {
+      commit("setMsgToken", token)
     }
   },
   plugins: [

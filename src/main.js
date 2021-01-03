@@ -1,9 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
-import './registerServiceWorker'
+// import './registerServiceWorker'
 import router from './router'
 import store from './store'
 const firebase = require('firebase')
+
+/* Axios */
+const axios = require('axios').default
+axios.defaults.baseURL = (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://mycar-api.herokuapp.com/')
 
 /* firebase */
 var firebaseConfig = {
@@ -19,10 +23,13 @@ firebase.default.initializeApp(firebaseConfig)
 
 const messaging = firebase.default.messaging()
 messaging.getToken({
-  vapidKey: "BAiNnX4iFPfh-33wJxKPmhJKylA8TURvJ21ktjknnDl8tsgvNppJOx_EnvSteLMHgnO1UCGbySD_MazJwiPlZkc"
-}).then(token=>{
-  console.log("cloud messaging token");
+  vapidKey: "BK1Z0In5dRj5Bnod1zU-O3-FgexqVzFpcqoRv38mdC6zTSJMALddq83PIYaxrKvnn-48RnNUG7NJp4d8KciUelc"
+}).then(token => {
   console.log(token);
+  store.dispatch("setMsgToken")
+  messaging.onMessage(msg=>{
+    console.log(msg);
+  })
 })
 
 /* Bootstrap */
@@ -46,9 +53,7 @@ Vue.component('page-container', PageContainer)
 import Toasted from 'vue-toasted';
 Vue.use(Toasted, { duration: 1500 })
 
-/* Axios */
-const axios = require('axios').default
-axios.defaults.baseURL = (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://mycar-api.herokuapp.com/')
+
 
 Vue.config.productionTip = false
 
