@@ -17,6 +17,14 @@ var firebaseConfig = {
 };
 firebase.default.initializeApp(firebaseConfig)
 
+const messaging = firebase.default.messaging()
+messaging.getToken({
+  vapidKey: "BAiNnX4iFPfh-33wJxKPmhJKylA8TURvJ21ktjknnDl8tsgvNppJOx_EnvSteLMHgnO1UCGbySD_MazJwiPlZkc"
+}).then(token=>{
+  console.log("cloud messaging token");
+  console.log(token);
+})
+
 /* Bootstrap */
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 Vue.use(BootstrapVue)
