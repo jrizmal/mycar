@@ -23,3 +23,11 @@ module.exports.getServices = function () {
 module.exports.addService = function (data) {
     return axios.post('/common/services/', data)
 }
+
+module.exports.getFirstAid = function () {
+    return axios.get('/common/firstaid/')
+}
+
+module.exports.addFirstAid = function (data) {
+    return axios.post('/common/firstaid/', data)
+}
