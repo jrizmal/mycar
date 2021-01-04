@@ -6,7 +6,7 @@
           <b-form-datepicker v-model="data.date"></b-form-datepicker>
         </b-form-group>
       <b-form-group label="Vnesi ceno menjave">
-        <b-form-input v-model="cost" placeholder="Vnesi ceno"></b-form-input>
+        <b-form-input v-model="data.price" placeholder="Vnesi ceno"></b-form-input>
       </b-form-group>
       <b-button @click="saveData" variant="success">Dodaj</b-button>
       </b-col>
@@ -20,14 +20,18 @@ export default {
   data() {
     return {
       data: {
-        date: new Date().toISOString().substr(0, 10),
-        cost: 0
+        date: new Date(),
+        price: 0
       },
     };
   },
   methods: {
     saveData() {
-      addFirstAid(this.data);
+      addFirstAid(this.data).then(res=>{
+        this.$toasted.success("Prva pomoč dodana")
+        this.$router.push("/dashboard")
+      }
+      );
     },
   },
 };
