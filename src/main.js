@@ -1,9 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
-import './registerServiceWorker'
+// import './registerServiceWorker'
 import router from './router'
 import store from './store'
 const firebase = require('firebase')
+
+/* Axios */
+const axios = require('axios').default
+axios.defaults.baseURL = (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://mycar-api.herokuapp.com/')
 
 /* firebase */
 var firebaseConfig = {
@@ -16,6 +20,17 @@ var firebaseConfig = {
   appId: "1:766675325521:web:637f661019c29f56c71e70"
 };
 firebase.default.initializeApp(firebaseConfig)
+
+const messaging = firebase.default.messaging()
+messaging.getToken({
+  vapidKey: "BK1Z0In5dRj5Bnod1zU-O3-FgexqVzFpcqoRv38mdC6zTSJMALddq83PIYaxrKvnn-48RnNUG7NJp4d8KciUelc"
+}).then(token => {
+  console.log(token);
+  store.dispatch("setMsgToken")
+  messaging.onMessage(msg=>{
+    console.log(msg);
+  })
+})
 
 /* Bootstrap */
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -38,9 +53,7 @@ Vue.component('page-container', PageContainer)
 import Toasted from 'vue-toasted';
 Vue.use(Toasted, { duration: 1500 })
 
-/* Axios */
-const axios = require('axios').default
-axios.defaults.baseURL = (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://mycar-api.herokuapp.com/')
+
 
 Vue.config.productionTip = false
 
