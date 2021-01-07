@@ -1,5 +1,5 @@
 <template>
-  <page-container title="Informacije">
+  <page-container title="Informacije" class="mb-5">
     <h3>Gorivo</h3>
     <FuelDisplay :fuelings="fuelings"></FuelDisplay>
     <h3>Gume</h3>
@@ -46,5 +46,8 @@ export default {
       this.firstaids = res.data
     })
   },
+  computed: {
+
+  }
 };
 </script>
