@@ -29,6 +29,13 @@
           <span>Servis</span>
         </div>
       </b-col>
+      <b-col xs="6" md="3">
+        <div @click="navigateTo('add_registration')" class="click-item">
+          <img src="@/assets/icons/engine.svg" />
+
+          <span>Registracija</span>
+        </div>
+      </b-col>
     </b-row>
   </page-container>
 </template>

@@ -8,6 +8,8 @@
     <ServiceDisplay :services="services"></ServiceDisplay>
     <h3>Prva Pomoč</h3>
     <FirstAidDisplay :firstaids="firstaids"></FirstAidDisplay>
+    <h3>Registracija</h3>
+    <RegistrationDisplay :registrations="registrations"></RegistrationDisplay>
   </page-container>
 </template>
 
@@ -16,13 +18,15 @@ import FuelDisplay from "../components/dashboard/FuelDisplay.vue";
 import TireDisplay from "../components/dashboard/TireDisplay.vue";
 import ServiceDisplay from "../components/dashboard/ServiceDisplay.vue";
 import FirstAidDisplay from "../components/dashboard/FirstAidDisplay.vue";
-const { getFuelings, getTires, getServices, getFirstAid } = require("../services/items");
+import RegistrationDisplay from "../components/dashboard/RegistrationDisplay.vue";
+const { getFuelings, getTires, getServices, getFirstAid , getRegistration} = require("../services/items");
 export default {
   components: {
     FuelDisplay: FuelDisplay,
     TireDisplay: TireDisplay,
     ServiceDisplay: ServiceDisplay,
     FirstAidDisplay: FirstAidDisplay,
+    RegistrationDisplay : RegistrationDisplay
   },
   data: () => {
     return {
@@ -30,6 +34,7 @@ export default {
       tires: [],
       services: [],
       firstaids: [],
+      registrations: [],
     };
   },
   async mounted() {
@@ -44,6 +49,9 @@ export default {
     });
     getFirstAid().then(res=>{
       this.firstaids = res.data
+    })
+    getRegistration().then(res=>{
+      this.registrations = res.data
     })
   },
 };

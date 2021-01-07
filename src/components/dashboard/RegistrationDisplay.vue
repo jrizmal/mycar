@@ -2,11 +2,18 @@
   <b-row>
     <b-col>
       <div class="dashboard-card">
-        <div v-for="f in fuelings" :key="f._id">
+        <div v-for="f in registrations" :key="f._id">
           <b-badge variant="success">{{ f.date | niceDate }}</b-badge>
-          <span class="mr-2"> {{ f.amount }}L</span>
+          <b-row>
+            <b-col class="ml-3">
+              <span>Velja do: </span>
+              <b-badge variant="warning">{{ f.expiration | niceDate }}</b-badge>
+              <br>
+              <span>Cena: </span>
+              <b-badge variant="primary">{{ f.price }}€</b-badge>
+            </b-col>
+          </b-row>
         </div>
-        <span><b>Skupaj: {{ fuelTotal }}€</b></span>
       </div>
     </b-col>
   </b-row>
@@ -15,18 +22,9 @@
 <script>
 export default {
   props: {
-    fuelings: {
+    registrations: {
       type: Array,
       required: true,
-    },
-  },
-  computed: {
-    fuelTotal() {
-      let sum = 0;
-      this.fuelings.forEach((el) => {
-        sum += el.price;
-      });
-      return sum.toFixed(2);
     },
   },
   methods: {},
@@ -38,6 +36,5 @@ export default {
   },
 };
 </script>
-
 <style>
 </style>

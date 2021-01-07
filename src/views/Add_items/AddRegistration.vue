@@ -1,11 +1,11 @@
 <template>
-   <page-container title="Menjava prve pomoči">
+   <page-container title="Dodaj registracijo">
     <b-row>
       <b-col sm="5">
-        <b-form-group label="Datum menjave">
+        <b-form-group label="Datum registracije">
           <b-form-datepicker v-model="data.date"></b-form-datepicker>
         </b-form-group>
-        <b-form-group label="Rok uporabe">
+        <b-form-group label="Velja do">
           <b-form-datepicker v-model="data.expiration"></b-form-datepicker>
         </b-form-group>
         <b-form-group label="Cena">
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { addFirstAid } from "../../services/items";
+import { addRegistration } from "../../services/items";
 export default {
   data() {
     return {
@@ -31,8 +31,8 @@ export default {
   },
   methods: {
     saveData() {
-      addFirstAid(this.data).then(res=>{
-        this.$toasted.success("Prva pomoč dodana")
+      addRegistration(this.data).then(res=>{
+        this.$toasted.success("Registracija dodana")
         this.$router.push("/dashboard")
       });
     },
