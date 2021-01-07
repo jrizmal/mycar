@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate";
 const axios = require('axios').default
-import firebase from "firebase"
-
+import {auth, firebase} from "../services/auth"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -15,7 +14,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setLoggedin(state, data) {
-      console.log('setLoggedIn');
+      // console.log('setLoggedIn');
       state.isLoggedIn = true
       state.idToken = data.token
       state.user = data.user
@@ -34,11 +33,11 @@ export default new Vuex.Store({
     async logIn({ commit }) {
       return new Promise(async (resolve, reject) => {
         let provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(async res => {
+        auth.signInWithPopup(provider).then(async res => {
           const user = res.user
           /* Dobimo idtoken */
           const idToken = await user.getIdToken()
-          axios.defaults.headers.common['Authorization'] = idToken;
+          axios.defaults.headers.common['authorization'] = idToken;
           commit('setLoggedin', {
             token: idToken,
             user: res
@@ -61,8 +60,22 @@ export default new Vuex.Store({
   },
   plugins: [
     createPersistedState({
-      rehydrated: function ({ state }) {
-        axios.defaults.headers.common['Authorization'] = state.idToken
+      rehydrated: async function ({ state, commit }) {
+        commit("setLoggedOut")
+        auth.onAuthStateChanged(async (user) => {
+          if (user) {
+            const token = await user.getIdToken(true)
+            // console.log("Token acquired: %s", token);
+            axios.defaults.headers.common["authorization"] = token
+            commit("setLoggedin",{
+              token: token,
+              user: user,
+            })
+          }
+          else {
+            // console.log("Not logged in");
+          }
+        })
       }
     }),
   ]
