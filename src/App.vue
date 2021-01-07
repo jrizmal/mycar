@@ -3,7 +3,7 @@
     <div v-if="auth.isLoggedIn" class="flex-content">
       <router-view />
     </div>
-    <page-container v-else title="Prijava">
+    <page-container v-if="!auth.isLoggedIn && introPassed" title="Prijava">
       <b-row>
         <b-col>
           <p>Za uporabo aplikacije se morate najprej prijaviti.</p>
@@ -22,6 +22,21 @@
         </b-col>
       </b-row>
     </page-container>
+    <div class="splash-screen" v-if="!auth.isLoggedIn && !introPassed">
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p>
+        <img
+        src="@/assets/logo.png"
+        />
+      </p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+    </div>
     <div v-if="auth.isLoggedIn" class="flex-navigation">
       <md-bottom-bar
         md-type="shift"
@@ -55,6 +70,11 @@
 <script>
 const firebase = require("firebase").default;
 export default {
+  data(){
+    return {
+      introPassed: false,
+    }
+  },
   computed: {
     activeItem() {
       const path = this.$route.path;
@@ -99,8 +119,11 @@ export default {
   mounted() {
     const messaging = firebase.messaging();
     messaging.onMessage((payload)=>{
-      console.log(payload);
+      // console.log(payload);
     })
+    setTimeout(()=>{
+      this.introPassed = true;
+    },700)
   },
 };
 </script>
@@ -123,6 +146,14 @@ export default {
   align-items: flex-end;
   /* border: 1px solid rgba(#000, 0.26);
   background: rgba(#000, 0.06); */
+}
+.splash-screen{
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  background-color: black;
 }
 </style>
 
