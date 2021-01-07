@@ -62,8 +62,11 @@ export default {
   },
   methods: {
     saveData() {
-      addFueling(this.data);
-    },
+      addFueling(this.data).then(res=>{
+        this.$toasted.success("Gorivo dodano")
+        this.$router.push("/dashboard")
+      });
+    }
   },
 };
 </script>
