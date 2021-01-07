@@ -10,6 +10,7 @@ import AddFirstAid from '../views/Add_items/AddFirstAid'
 import AddInsurance from '../views/Add_items/AddInsurance'
 import AddTechnical from '../views/Add_items/AddTechnical'
 import Login from '../views/Login'
+import AddRegistration from '../views/Add_items/AddRegistration'
 
 Vue.use(VueRouter)
 
@@ -66,7 +67,11 @@ const routes = [
     path: '/add/technical',
     component: AddTechnical
   },
-
+  {
+    path: '/registration',
+    name: 'add_registration',
+    component: AddRegistration
+  }
 ]
 
 const router = new VueRouter({

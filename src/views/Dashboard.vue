@@ -12,6 +12,8 @@
     <InsuranceDisplay :insurances="insurances"></InsuranceDisplay>
     <h3>Tehnični pregledi</h3>
     <TechnicalDisplay :technicals="technicals"></TechnicalDisplay>
+    <h3>Registracija</h3>
+    <RegistrationDisplay :registrations="registrations"></RegistrationDisplay>
   </page-container>
 </template>
 
@@ -22,7 +24,8 @@ import ServiceDisplay from "../components/dashboard/ServiceDisplay.vue";
 import FirstAidDisplay from "../components/dashboard/FirstAidDisplay.vue";
 import TechnicalDisplay from "../components/dashboard/TechnicalDisplay.vue";
 import InsuranceDisplay from "../components/dashboard/InsuranceDisplay.vue";
-const { getFuelings, getTires, getServices, getFirstAid, getTechnical, getInsurance } = require("../services/items");
+import RegistrationDisplay from "../components/dashboard/RegistrationDisplay.vue";
+const { getFuelings, getTires, getServices, getFirstAid, getTechnical, getInsurance, getRegistration} = require("../services/items");
 export default {
   components: {
     FuelDisplay: FuelDisplay,
@@ -30,7 +33,8 @@ export default {
     ServiceDisplay: ServiceDisplay,
     FirstAidDisplay: FirstAidDisplay,
     TechnicalDisplay: TechnicalDisplay,
-    InsuranceDisplay: InsuranceDisplay
+    InsuranceDisplay: InsuranceDisplay,
+    RegistrationDisplay : RegistrationDisplay
   },
   data: () => {
     return {
@@ -40,6 +44,7 @@ export default {
       firstaids: [],
       technicals: [],
       insurances: [],
+      registrations: [],
     };
   },
   async mounted() {
@@ -60,6 +65,9 @@ export default {
     })
     getTechnical().then(res=>{
       this.technicals = res.data
+    })
+    getRegistration().then(res=>{
+      this.registrations = res.data
     })
   },
   computed: {

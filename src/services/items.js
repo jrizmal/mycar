@@ -47,3 +47,10 @@ module.exports.getInsurance = function () {
 module.exports.addInsurance = function (data) {
     return axios.post('/common/insurance/', data)
 }
+module.exports.getRegistration = function () {
+    return axios.get('/common/registration/')
+}
+
+module.exports.addRegistration = function (data) {
+    return axios.post('/common/registration/', data)
+}

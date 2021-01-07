@@ -3,10 +3,16 @@
     <b-col>
       <div class="dashboard-card">
         <div v-for="s in services" :key="s._id">
-          <b-badge variant="primary">{{ s.vendor }}</b-badge>
-          <span class="ml-2">{{ s.date | niceDate }}</span>
+          <b-badge variant="success">{{ s.date | niceDate }}</b-badge>
+          -
+          <b-badge  variant="primary">{{ s.vendor }}</b-badge>
+          <div>
+            Zamenjano:
+          </div>
           <ul>
               <li v-for="(i, index) in s.items" :key="index">{{ i }}</li>
+              Cena:
+              <b-badge  variant="primary">{{ s.price }}</b-badge>
           </ul>
         </div>
       </div>
