@@ -41,8 +41,11 @@
           <img src="@/assets/icons/insurance.svg" />
 
           <span>Zavarovanje</span>
+        </div>
+      </b-col>
+      <b-col xs="6" md="3">
         <div @click="navigateTo('add_registration')" class="click-item">
-          <img src="@/assets/icons/engine.svg" />
+          <img src="@/assets/icons/registration.svg" />
 
           <span>Registracija</span>
         </div>
