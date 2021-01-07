@@ -59,7 +59,8 @@ export default {
     saveService(){
       const obj = Object.assign({},this.data)
       addService(obj).then(res=>{
-        this.$toasted.success("Servis shranjen")
+        this.$toasted.success("Servis dodan")
+        this.$router.push("/dashboard")
       })
     }
   }

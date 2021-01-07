@@ -31,3 +31,11 @@ module.exports.getFirstAid = function () {
 module.exports.addFirstAid = function (data) {
     return axios.post('/common/firstaid/', data)
 }
+
+module.exports.getRegistration = function () {
+    return axios.get('/common/registration/')
+}
+
+module.exports.addRegistration = function (data) {
+    return axios.post('/common/registration/', data)
+}

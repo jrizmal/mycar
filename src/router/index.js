@@ -8,6 +8,7 @@ import AddFuel from '../views/Add_items/AddFuel'
 import AddService from '../views/Add_items/AddService'
 import AddFirstAid from '../views/Add_items/AddFirstAid'
 import Login from '../views/Login'
+import AddRegistration from '../views/Add_items/AddRegistration'
 
 Vue.use(VueRouter)
 
@@ -54,7 +55,11 @@ const routes = [
     name: 'Login',
     component: Login
   },
-
+  {
+    path: '/registration',
+    name: 'add_registration',
+    component: AddRegistration
+  }
 ]
 
 const router = new VueRouter({

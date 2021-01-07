@@ -68,6 +68,7 @@ export default {
     addTires(){
       addTires(this.data).then(res=>{
         this.$toasted.success("Gume dodane")
+        this.$router.push("/dashboard")
       })
     }
   }
