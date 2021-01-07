@@ -5,10 +5,12 @@
         <b-form-group label="Agencija">
           <b-form-input v-model="data.agency" placeholder="Vnesi agencijo"></b-form-input>
         </b-form-group>
-        <b-form-select
+        <b-form-group label="Tip zavarovanja">
+          <b-form-select
             v-model="data.insurance_type"
             :options="insurance_type_options"
-        ></b-form-select>
+          ></b-form-select>
+        </b-form-group>
         <b-form-group label="Datum zavarovanja">
           <b-form-datepicker v-model="data.date"></b-form-datepicker>
         </b-form-group>

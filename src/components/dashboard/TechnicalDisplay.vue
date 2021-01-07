@@ -7,7 +7,7 @@
           <b-row>
             <b-col class="ml-3">
               <span>Pregled opravljen: </span>
-              <b-badge variant="primary">{{ f.date | niceDate }}</b-badge>
+              <b-badge variant="success">{{ f.date | niceDate }}</b-badge>
               <br>
               <span>Veljaven do: </span>
               <b-badge variant="warning">{{ f.expiration | niceDate }}</b-badge>
