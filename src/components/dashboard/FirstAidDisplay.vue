@@ -4,10 +4,15 @@
       <div class="dashboard-card">
         <div v-for="f in firstaids" :key="f._id">
           <b-badge variant="success">{{ f.date | niceDate }}</b-badge>
-          <br>
-          <b-badge variant="danger">{{ f.expiration | niceDate }}</b-badge>
-          <span class="mr-2">{{ f.price }}€</span>
-          <p></p>
+          <b-row>
+            <b-col class="ml-3">
+              <span>Rok uporabe: </span>
+              <b-badge variant="warning">{{ f.expiration | niceDate }}</b-badge>
+              <br>
+              <span>Cena: </span>
+              <b-badge variant="primary">{{ f.price }}€</b-badge>
+            </b-col>
+          </b-row>
         </div>
       </div>
     </b-col>
