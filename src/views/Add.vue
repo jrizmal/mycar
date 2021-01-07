@@ -29,6 +29,20 @@
           <span>Servis</span>
         </div>
       </b-col>
+      <b-col xs="6" md="3">
+        <div @click="navigateTo('add_technical')" class="click-item">
+          <img src="@/assets/icons/inspection.svg" />
+
+          <span>Tehnični pregled</span>
+        </div>
+      </b-col>
+      <b-col xs="6" md="3">
+        <div @click="navigateTo('add_insurance')" class="click-item">
+          <img src="@/assets/icons/insurance.svg" />
+
+          <span>Zavarovanje</span>
+        </div>
+      </b-col>
     </b-row>
   </page-container>
 </template>

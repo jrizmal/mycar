@@ -31,3 +31,19 @@ module.exports.getFirstAid = function () {
 module.exports.addFirstAid = function (data) {
     return axios.post('/common/firstaid/', data)
 }
+
+module.exports.getTechnical = function () {
+    return axios.get('/common/technical/')
+}
+
+module.exports.addTechnical = function (data) {
+    return axios.post('/common/technical/', data)
+}
+
+module.exports.getInsurance = function () {
+    return axios.get('/common/insurance/')
+}
+
+module.exports.addInsurance = function (data) {
+    return axios.post('/common/insurance/', data)
+}
