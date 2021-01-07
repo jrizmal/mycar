@@ -1,22 +1,20 @@
 <template>
-  <b-row>
-    <b-col>
+  
       <div class="dashboard-card">
         <div v-for="f in registrations" :key="f._id">
-          <b-badge variant="success">{{ f.date | niceDate }}</b-badge>
+          <b-badge variant="warning">{{ f.date | niceDate }}</b-badge>
           <b-row>
             <b-col class="ml-3">
               <span>Velja do: </span>
-              <b-badge variant="warning">{{ f.expiration | niceDate }}</b-badge>
+              <b-badge variant="danger">{{ f.expiration | niceDate }}</b-badge>
               <br>
               <span>Cena: </span>
-              <b-badge variant="primary">{{ f.price }}€</b-badge>
+              <b-badge variant="success">{{ f.price }}€</b-badge>
             </b-col>
           </b-row>
         </div>
       </div>
-    </b-col>
-  </b-row>
+    
 </template>
 
 <script>
