@@ -14,7 +14,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setLoggedin(state, data) {
-      console.log('setLoggedIn');
+      // console.log('setLoggedIn');
       state.isLoggedIn = true
       state.idToken = data.token
       state.user = data.user
@@ -65,7 +65,7 @@ export default new Vuex.Store({
         auth.onAuthStateChanged(async (user) => {
           if (user) {
             const token = await user.getIdToken(true)
-            console.log("Token acquired: %s", token);
+            // console.log("Token acquired: %s", token);
             axios.defaults.headers.common["authorization"] = token
             commit("setLoggedin",{
               token: token,
@@ -73,7 +73,7 @@ export default new Vuex.Store({
             })
           }
           else {
-            console.log("no user");
+            // console.log("Not logged in");
           }
         })
       }

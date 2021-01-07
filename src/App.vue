@@ -119,7 +119,7 @@ export default {
   mounted() {
     const messaging = firebase.messaging();
     messaging.onMessage((payload)=>{
-      console.log(payload);
+      // console.log(payload);
     })
     setTimeout(()=>{
       this.introPassed = true;

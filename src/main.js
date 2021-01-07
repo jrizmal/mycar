@@ -37,7 +37,7 @@ messaging.getToken({
   // console.log(token);
   store.dispatch("setMsgToken")
   messaging.onMessage(msg => {
-    console.log(msg);
+    // console.log(msg);
   })
 })
 
