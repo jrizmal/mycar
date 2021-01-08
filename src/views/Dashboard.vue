@@ -40,7 +40,7 @@
       <div class="masonry-item">
         <div>
           <h3>Registracija</h3>
-          <RegistrationDisplay :registrations="registrations"></RegistrationDisplay>
+          <TechnicalDisplay :technicals="technicals"></TechnicalDisplay>
         </div>
       </div>
     </div>
