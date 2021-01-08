@@ -1,32 +1,28 @@
 <template>
   <page-container title="Dodaj zapis">
     <b-row class="button-wrapper">
-      <b-col xs="6" md="3">
+      <b-col cols="6" sm="6" md="3">
         <div @click="navigateTo('add_tires')" class="click-item">
           <img src="@/assets/icons/tire.svg" />
-
-          <span>Gume</span>
+          <h3>Gume</h3>
         </div>
       </b-col>
-      <b-col xs="6" md="3">
+      <b-col cols="6" md="3" sm="6">
         <div @click="navigateTo('add_fuel')" class="click-item">
           <img src="@/assets/icons/pump.svg" />
-
-          <span>Gorivo</span>
+          <h3>Gorivo</h3>
         </div>
       </b-col>
-      <b-col xs="6" md="3">
+      <b-col cols="6" md="3" sm="6">
         <div @click="navigateTo('add_firstaid')" class="click-item">
           <img src="@/assets/icons/first_aid.svg" />
-
-          <span>Prva pomoč</span>
+          <h3>Prva pomoč</h3>
         </div>
       </b-col>
-      <b-col xs="6" md="3">
+      <b-col cols="6" md="3">
         <div @click="navigateTo('add_service')" class="click-item">
           <img src="@/assets/icons/engine.svg" />
-
-          <span>Servis</span>
+          <h3>Servis</h3>
         </div>
       </b-col>
       <b-col xs="6" md="3">
@@ -70,7 +66,16 @@ export default {
 </script>
 
 <style scoped>
-.button-wrapper > div{
-  margin-bottom: 20px;
+.button-wrapper > div {
+  margin-bottom: 30px;
 }
+.click-item > img{
+  width: 100%;
+  margin-bottom: 30px;
+opacity: 0.5;
+}
+/* .click-item {
+  padding: 50px !important;
+} */
+
 </style>

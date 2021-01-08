@@ -1,15 +1,16 @@
 <template>
-  <b-row>
-    <b-col>
+  
       <div class="dashboard-card">
         <div v-for="f in fuelings" :key="f._id">
           <b-badge variant="success">{{ f.date | niceDate }}</b-badge>
-          <span class="mr-2"> {{ f.amount }}L</span>
+          <span class="mr-2"> {{ f.amount }} L</span>
         </div>
-        <span><b>Skupaj: {{ fuelTotal }}€</b></span>
+        <div class="mt-3">
+        <span ><b>Skupaj: {{ fuelTotal }}€</b></span>
+
+        </div>
       </div>
-    </b-col>
-  </b-row>
+    
 </template>
 
 <script>

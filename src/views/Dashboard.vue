@@ -1,19 +1,49 @@
 <template>
   <page-container title="Informacije" class="mb-5">
-    <h3>Gorivo</h3>
-    <FuelDisplay :fuelings="fuelings"></FuelDisplay>
-    <h3>Gume</h3>
-    <TireDisplay :tires="tires"></TireDisplay>
-    <h3>Servisi</h3>
-    <ServiceDisplay :services="services"></ServiceDisplay>
-    <h3>Prva Pomoč</h3>
-    <FirstAidDisplay :firstaids="firstaids"></FirstAidDisplay>
-    <h3>Zavarovanje</h3>
-    <InsuranceDisplay :insurances="insurances"></InsuranceDisplay>
-    <h3>Tehnični pregledi</h3>
-    <TechnicalDisplay :technicals="technicals"></TechnicalDisplay>
-    <h3>Registracija</h3>
-    <RegistrationDisplay :registrations="registrations"></RegistrationDisplay>
+    <div class="masonry-container">
+      <div class="masonry-item">
+        <div>
+          <h3>Gorivo</h3>
+          <FuelDisplay :fuelings="fuelings"></FuelDisplay>
+        </div>
+      </div>
+      <div class="masonry-item">
+        <div>
+          <h3>Gume</h3>
+          <TireDisplay :tires="tires"></TireDisplay>
+        </div>
+      </div>
+      <div class="masonry-item">
+        <div>
+          <h3>Servisi</h3>
+          <ServiceDisplay :services="services"></ServiceDisplay>
+        </div>
+      </div>
+      <div class="masonry-item">
+        <div>
+          <h3>Prva Pomoč</h3>
+          <FirstAidDisplay :firstaids="firstaids"></FirstAidDisplay>
+        </div>
+      </div>
+      <div class="masonry-item">
+        <div>
+          <h3>Registracija</h3>
+          <RegistrationDisplay :registrations="registrations"></RegistrationDisplay>
+        </div>
+      </div>
+      <div class="masonry-item">
+        <div>
+          <h3>Zavarovanje</h3>
+          <InsuranceDisplay :insurances="insurances"></InsuranceDisplay>
+        </div>
+      </div>
+      <div class="masonry-item">
+        <div>
+          <h3>Registracija</h3>
+          <RegistrationDisplay :registrations="registrations"></RegistrationDisplay>
+        </div>
+      </div>
+    </div>
   </page-container>
 </template>
 
@@ -54,8 +84,14 @@ export default {
     getTires().then((res) => {
       this.tires = res.data;
     });
-    getServices().then(res=>{
-      this.services = res.data
+    getServices().then((res) => {
+      this.services = res.data;
+    });
+    getFirstAid().then((res) => {
+      this.firstaids = res.data;
+    });
+    getRegistration().then((res) => {
+      this.registrations = res.data;
     });
     getFirstAid().then(res=>{
       this.firstaids = res.data
@@ -70,8 +106,6 @@ export default {
       this.registrations = res.data
     })
   },
-  computed: {
-
-  }
+  computed: {},
 };
 </script>

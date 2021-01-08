@@ -2,7 +2,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate";
 const axios = require('axios').default
-import {auth, firebase} from "../services/auth"
+import { auth, firebase } from "../services/auth"
+
+const { getUser } = require('../services/authItems')
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -33,15 +36,19 @@ export default new Vuex.Store({
     async logIn({ commit }) {
       return new Promise(async (resolve, reject) => {
         let provider = new firebase.auth.GoogleAuthProvider();
-        auth.signInWithPopup(provider).then(async res => {
+        auth.signInWithPopup(provider).then(async (res) => {
           const user = res.user
           /* Dobimo idtoken */
           const idToken = await user.getIdToken()
+
           axios.defaults.headers.common['authorization'] = idToken;
           commit('setLoggedin', {
             token: idToken,
             user: res
           })
+          /* Dobimo userja še iz lastne baze */
+          // getUser()
+
           resolve(res)
           /* Pingam svoj api */
           axios.get("ping")
@@ -67,7 +74,7 @@ export default new Vuex.Store({
             const token = await user.getIdToken(true)
             // console.log("Token acquired: %s", token);
             axios.defaults.headers.common["authorization"] = token
-            commit("setLoggedin",{
+            commit("setLoggedin", {
               token: token,
               user: user,
             })
