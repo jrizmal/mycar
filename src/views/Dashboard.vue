@@ -1,43 +1,50 @@
 <template>
   <page-container title="Informacije" class="mb-5">
     <div class="masonry-container">
-      <div class="masonry-item">
+      <div v-if="allEmpty" class="masonry-item">
+        <div>
+          <h4>Nimate še zapisov. <b-button variant="success" @click="goToAdd">Dodajte jih</b-button></h4>
+        </div>
+      </div>
+      <div v-if="fuelings.length > 0" class="masonry-item">
         <div>
           <h3>Gorivo</h3>
           <FuelDisplay :fuelings="fuelings"></FuelDisplay>
         </div>
       </div>
-      <div class="masonry-item">
+      <div v-if="tires.length > 0" class="masonry-item">
         <div>
           <h3>Gume</h3>
           <TireDisplay :tires="tires"></TireDisplay>
         </div>
       </div>
-      <div class="masonry-item">
+      <div v-if="services.length > 0" class="masonry-item">
         <div>
           <h3>Servisi</h3>
           <ServiceDisplay :services="services"></ServiceDisplay>
         </div>
       </div>
-      <div class="masonry-item">
+      <div v-if="firstaids.length > 0" class="masonry-item">
         <div>
           <h3>Prva Pomoč</h3>
           <FirstAidDisplay :firstaids="firstaids"></FirstAidDisplay>
         </div>
       </div>
-      <div class="masonry-item">
+      <div v-if="registrations.length > 0" class="masonry-item">
         <div>
           <h3>Registracija</h3>
-          <RegistrationDisplay :registrations="registrations"></RegistrationDisplay>
+          <RegistrationDisplay
+            :registrations="registrations"
+          ></RegistrationDisplay>
         </div>
       </div>
-      <div class="masonry-item">
+      <div v-if="insurances.length > 0" class="masonry-item">
         <div>
           <h3>Zavarovanje</h3>
           <InsuranceDisplay :insurances="insurances"></InsuranceDisplay>
         </div>
       </div>
-      <div class="masonry-item">
+      <div v-if="technicals.length > 0" class="masonry-item">
         <div>
           <h3>Tehnični</h3>
           <TechnicalDisplay :technicals="technicals"></TechnicalDisplay>
@@ -55,7 +62,15 @@ import FirstAidDisplay from "../components/dashboard/FirstAidDisplay.vue";
 import TechnicalDisplay from "../components/dashboard/TechnicalDisplay.vue";
 import InsuranceDisplay from "../components/dashboard/InsuranceDisplay.vue";
 import RegistrationDisplay from "../components/dashboard/RegistrationDisplay.vue";
-const { getFuelings, getTires, getServices, getFirstAid, getTechnical, getInsurance, getRegistration} = require("../services/items");
+const {
+  getFuelings,
+  getTires,
+  getServices,
+  getFirstAid,
+  getTechnical,
+  getInsurance,
+  getRegistration,
+} = require("../services/items");
 export default {
   components: {
     FuelDisplay: FuelDisplay,
@@ -64,7 +79,7 @@ export default {
     FirstAidDisplay: FirstAidDisplay,
     TechnicalDisplay: TechnicalDisplay,
     InsuranceDisplay: InsuranceDisplay,
-    RegistrationDisplay : RegistrationDisplay
+    RegistrationDisplay: RegistrationDisplay,
   },
   data: () => {
     return {
@@ -93,19 +108,34 @@ export default {
     getRegistration().then((res) => {
       this.registrations = res.data;
     });
-    getFirstAid().then(res=>{
-      this.firstaids = res.data
-    })
-    getInsurance().then(res=>{
-      this.insurances = res.data
-    })
-    getTechnical().then(res=>{
-      this.technicals = res.data
-    })
-    getRegistration().then(res=>{
-      this.registrations = res.data
-    })
+    getFirstAid().then((res) => {
+      this.firstaids = res.data;
+    });
+    getInsurance().then((res) => {
+      this.insurances = res.data;
+    });
+    getTechnical().then((res) => {
+      this.technicals = res.data;
+    });
+    getRegistration().then((res) => {
+      this.registrations = res.data;
+    });
   },
-  computed: {},
+  computed: {
+    allEmpty(){
+      return this.fuelings.length <= 0
+      && this.tires.length <= 0
+      && this.services.length <= 0
+      && this.firstaids.length <= 0
+      && this.technicals.length <= 0
+      && this.insurances.length <= 0
+      && this.registrations.length <= 0
+    }
+  },
+  methods: {
+    goToAdd(){
+      this.$router.push("/add")
+    }
+  }
 };
 </script>
