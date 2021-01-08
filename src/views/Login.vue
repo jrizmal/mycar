@@ -1,13 +1,29 @@
 <template>
-  <page-container title="Prijava">
+  <page-container title="Dobrodošli">
     <b-row>
-      <b-col>
-        <b-button @click="googleLogin">
-          Google Prijava
-        </b-button>
+      <b-col cols="12" sm="6" md="4">
+        <b-row>
+          <b-col>
+            <p>Pred začetkom vas prosimo, da se <b>prijavite.</b></p>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-button block variant="success" @click="googleLogin">
+              Google Prijava
+            </b-button>
+          </b-col>
+        </b-row>
       </b-col>
     </b-row>
-    
+
+    <!-- <b-row>
+      <b-col>
+        <p>
+          {{ new Date().getFullYear() }}, Ekipa myCar
+        </p>
+      </b-col>
+    </b-row> -->
   </page-container>
 </template>
 
@@ -19,23 +35,9 @@ export default {
   },
   methods: {
     async googleLogin() {
-      var provider = new firebase.auth.GoogleAuthProvider();
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then((res) => {
-          if (res.credential) {
-            this.$store.dispatch("logIn", {
-              user: res.user,
-              token: res.credential.accessToken,
-            });
-            this.$router.replace("/");
-            this.$toasted.success(`Pozdravljeni ${res.user.displayName}!`)
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      this.$store.dispatch("logIn").then((res) => {
+        this.$toasted.success(`Pozdravljeni`);
+      });
     },
   },
 };

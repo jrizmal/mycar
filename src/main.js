@@ -29,20 +29,6 @@ Vue.component('page-container', PageContainer)
 import Toasted from 'vue-toasted';
 Vue.use(Toasted, { duration: 1500 })
 
-/* Messaging */
-import {messaging} from "./services/auth"
-messaging.getToken({
-  vapidKey: "BK1Z0In5dRj5Bnod1zU-O3-FgexqVzFpcqoRv38mdC6zTSJMALddq83PIYaxrKvnn-48RnNUG7NJp4d8KciUelc"
-}).then(token => {
-  // console.log(token);
-  store.dispatch("setMsgToken")
-  messaging.onMessage(msg => {
-    // console.log(msg);
-  })
-})
-
-
-
 Vue.config.productionTip = false
 
 new Vue({

@@ -1,24 +1,20 @@
 <template>
-  <b-row>
-    <b-col>
-      <div class="dashboard-card">
-        <div v-for="t in tires" :key="t._id">
-            <b-badge v-if="t.winter" variant="primary" >Zimske</b-badge>
-            <b-badge v-else variant="success" >Letne</b-badge>
-          <b-col class="ml-3">
-              <span>Proizvajalec: </span>
-              <b-badge variant="info">{{ t.manufacturer }}</b-badge>
-              <br>
-              <span>Model: </span>
-              <b-badge variant="info">{{ t.model }}</b-badge>
-              <br>
-              <span>Cena: </span>
-              <b-badge variant="primary">{{ t.price }}€</b-badge>
-            </b-col>
-        </div>
-      </div>
-    </b-col>
-  </b-row>
+  <div class="dashboard-card">
+    <div v-for="t in tires" :key="t._id" >
+      <b-badge v-if="t.winter" variant="primary">Zimske</b-badge>
+      <b-badge v-else variant="warning">Letne</b-badge>
+      <b-col class="ml-3">
+        <span>Proizvajalec: </span>
+        <b-badge variant="">{{ t.manufacturer }}</b-badge>
+        <br />
+        <span>Model: </span>
+        <b-badge variant="">{{ t.model }}</b-badge>
+        <br />
+        <span>Cena: </span>
+        <b-badge variant="success">{{ t.price }}€</b-badge>
+      </b-col>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -29,9 +25,7 @@ export default {
       required: true,
     },
   },
-  computed: {
-    
-  },
+  computed: {},
   methods: {},
   filters: {
     niceDate(dateString) {
