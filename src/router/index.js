@@ -7,6 +7,8 @@ import AddTires from '../views/Add_items/AddTires'
 import AddFuel from '../views/Add_items/AddFuel'
 import AddService from '../views/Add_items/AddService'
 import AddFirstAid from '../views/Add_items/AddFirstAid'
+import AddInsurance from '../views/Add_items/AddInsurance'
+import AddTechnical from '../views/Add_items/AddTechnical'
 import Login from '../views/Login'
 import AddRegistration from '../views/Add_items/AddRegistration'
 
@@ -54,6 +56,16 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    name: 'add_insurance',
+    path: '/add/insurance',
+    component: AddInsurance
+  },
+  {
+    name: 'add_technical',
+    path: '/add/technical',
+    component: AddTechnical
   },
   {
     path: '/registration',

@@ -25,10 +25,25 @@
           <h3>Servis</h3>
         </div>
       </b-col>
-      <b-col cols="6" md="3">
+      <b-col xs="6" md="3">
+        <div @click="navigateTo('add_technical')" class="click-item">
+          <img src="@/assets/icons/inspection.svg" />
+
+          <span>Tehnični pregled</span>
+        </div>
+      </b-col>
+      <b-col xs="6" md="3">
+        <div @click="navigateTo('add_insurance')" class="click-item">
+          <img src="@/assets/icons/insurance.svg" />
+
+          <span>Zavarovanje</span>
+        </div>
+      </b-col>
+      <b-col xs="6" md="3">
         <div @click="navigateTo('add_registration')" class="click-item">
-          <img src="@/assets/icons/engine.svg" />
-          <h3>Registracija</h3>
+          <img src="@/assets/icons/registration.svg" />
+
+          <span>Registracija</span>
         </div>
       </b-col>
     </b-row>
