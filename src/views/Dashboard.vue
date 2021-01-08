@@ -39,7 +39,7 @@
       </div>
       <div class="masonry-item">
         <div>
-          <h3>Registracija</h3>
+          <h3>Tehnični</h3>
           <TechnicalDisplay :technicals="technicals"></TechnicalDisplay>
         </div>
       </div>
